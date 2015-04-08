@@ -17,6 +17,8 @@
 
 package de.dhbw.mannheim.erpsim.model;
 
+import java.beans.Transient;
+
 /**
  * @author Tarek Auel
  * @since 08.04.2015
