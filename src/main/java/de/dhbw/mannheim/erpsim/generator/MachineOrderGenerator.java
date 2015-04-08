@@ -20,7 +20,7 @@ public class MachineOrderGenerator {
 
         String machine = getMachineName(1);
 
-        double plannedSeconds = 8 + 2 * Math.random();
+        double plannedSeconds = 25 + 2 * Math.random();
 
         double speedShaperRPM = 10 + 10 * Math.random();
 
