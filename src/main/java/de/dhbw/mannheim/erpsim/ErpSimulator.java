@@ -1,8 +1,25 @@
+/*
+ * Copyright (c) 2015 Tarek Auel
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+ * documentation files (the "Software"), to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
+ * to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions
+ * of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+ * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
 package de.dhbw.mannheim.erpsim;
 
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 import com.thoughtworks.xstream.XStream;
 import de.dhbw.mannheim.erpsim.generator.CustomerOrderGenerator;
 import de.dhbw.mannheim.erpsim.generator.MachineOrderGenerator;
@@ -13,14 +30,22 @@ import java.io.IOException;
 
 
 /**
- * Created by tarek on 08.04.15.
+ * @author Tarek Auel
+ * @since 08.04.2015
  */
 public class ErpSimulator {
 
     public static final String CUSTOMER_ORDER_QUEUE_NAME = "CUSTOMER_ORDER_QUEUE";
     public static final String MACHINE_ORDER_QUEUE_NAME = "MACHINE_ORDER_QUEUE";
 
-
+    /**
+     *
+     *
+     * @param args command line parameter
+     *             args[0] number of customer orders that should be created
+     *             args[1] hostname of rabbitMQ
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
 
         int numOfCustomerOrder = 10;
@@ -66,7 +91,7 @@ public class ErpSimulator {
         MachineOrder mo = MachineOrderGenerator.getRandomMachineOrder();
 
         while (mo != null) {
-            System.in.read();
+            int i = System.in.read();
             String message = xstream.toXML(mo);
             channelMO.basicPublish("", MACHINE_ORDER_QUEUE_NAME, null, message.getBytes());
             System.out.println("Send Machine order");
