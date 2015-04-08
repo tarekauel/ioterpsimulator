@@ -39,8 +39,8 @@ public class OrderPosition {
         return pieces;
     }
 
-    public String getPositionName() {
-        return positionName;
+    public Workpiece getPosition() {
+        return position;
     }
 
     public MachineOrder[] getMachineOrders() {
