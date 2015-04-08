@@ -3,6 +3,7 @@ package de.dhbw.mannheim.erpsim.generator;
 import de.dhbw.mannheim.erpsim.model.CustomerOrder;
 import de.dhbw.mannheim.erpsim.model.OrderPosition;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -25,10 +26,19 @@ public class CustomerOrderGenerator {
 
         long orderNumber = lastId++;
 
-        OrderPosition[] positions = new OrderPosition[(int) (Math.random() * 3) + 1];
+        int numberOfPositions = (int) (Math.random() * 3) + 1;
+        if(numberOfPositions > WorkpieceGenerator.getNumberOfPieces()){
+            System.out.println("The number of positions will be reduced to the known number of Workpieces.");
+            numberOfPositions = WorkpieceGenerator.getNumberOfPieces();
+        }
+        OrderPosition[] positions = new OrderPosition[numberOfPositions];
 
         for (int i=0; i < positions.length; i++) {
-            positions[i] = OrderPositionGenerator.getOrderPosition();
+            OrderPosition o = OrderPositionGenerator.getOrderPosition();
+            while(Arrays.asList(positions).contains(o)){
+                o = OrderPositionGenerator.getOrderPosition();
+            }
+            positions[i] = o;
         }
 
         return new CustomerOrder(customerFirstName, customerLastName, customerNumber, orderNumber, positions);

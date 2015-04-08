@@ -7,16 +7,16 @@ public class OrderPosition {
 
     private int pieces;
 
-    private String positionName;
+    private Workpiece position;
 
     private MachineOrder[] machineOrders;
 
     public OrderPosition() {
     }
 
-    public OrderPosition(int pieces, String positionName, MachineOrder[] machineOrders) {
+    public OrderPosition(int pieces, Workpiece position, MachineOrder[] machineOrders) {
         this.pieces = pieces;
-        this.positionName = positionName;
+        this.position = position;
         this.machineOrders = machineOrders;
     }
 }
