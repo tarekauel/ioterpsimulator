@@ -25,13 +25,13 @@ public class OrderPosition {
 
     private final int pieces;
 
-    private final String positionName;
+    private Workpiece position;
 
     private final MachineOrder[] machineOrders;
 
-    public OrderPosition(int pieces, String positionName, MachineOrder[] machineOrders) {
+     public OrderPosition(int pieces, Workpiece position, MachineOrder[] machineOrders) {
         this.pieces = pieces;
-        this.positionName = positionName;
+        this.position = position;
         this.machineOrders = machineOrders;
     }
 
@@ -39,8 +39,8 @@ public class OrderPosition {
         return pieces;
     }
 
-    public String getPositionName() {
-        return positionName;
+    public Workpiece getPosition() {
+        return position;
     }
 
     public MachineOrder[] getMachineOrders() {

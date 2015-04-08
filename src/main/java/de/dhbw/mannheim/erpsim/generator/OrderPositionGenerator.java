@@ -19,6 +19,7 @@ package de.dhbw.mannheim.erpsim.generator;
 
 import de.dhbw.mannheim.erpsim.model.MachineOrder;
 import de.dhbw.mannheim.erpsim.model.OrderPosition;
+import de.dhbw.mannheim.erpsim.model.Workpiece;
 
 /**
  * @author Tarek Auel
@@ -26,24 +27,25 @@ import de.dhbw.mannheim.erpsim.model.OrderPosition;
  */
 public class OrderPositionGenerator {
 
-    private final static String[] positionNames = new String[] {"Motorhaube","Felge","Reifen","Lenkrad","Radio"};
+    private static String[] positionNames = new String[] {"Motorhaube","Felge","Reifen","Lenkrad","Radio"};
 
     public static OrderPosition getOrderPosition() {
 
         int pieces = (int) (Math.random() * 2) + 1;
 
-        String positionName = getPositionName((int) (Math.random() * positionNames.length));
+        Workpiece position = getRandomWorkpiece();
 
         MachineOrder[] machineOrders = new MachineOrder[pieces];
 
-        for (int i=0; i < machineOrders.length; i++) {
+        for (int i = 0; i < machineOrders.length; i++) {
             machineOrders[i] = MachineOrderGenerator.getMachineOrder();
         }
 
-        return new OrderPosition(pieces,positionName,machineOrders);
+        return new OrderPosition(pieces, position, machineOrders);
     }
 
-    public static String getPositionName(int i) {
-        return positionNames[i];
+
+    private static Workpiece getRandomWorkpiece() {
+        return WorkpieceGenerator.getRandomWorkpiece();
     }
 }
