@@ -1,8 +1,8 @@
 package de.dhbw.mannheim.erpsim;
 
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 import com.thoughtworks.xstream.XStream;
 import de.dhbw.mannheim.erpsim.generator.CustomerOrderGenerator;
 import de.dhbw.mannheim.erpsim.generator.MachineOrderGenerator;
@@ -43,11 +43,12 @@ public class ErpSimulator {
 
         CustomerOrder[] customerOrders = new CustomerOrder[numOfCustomerOrder];
 
-        for (int i=0; i < customerOrders.length; i++) {
+        for (int i = 0; i < customerOrders.length; i++) {
             customerOrders[i] = CustomerOrderGenerator.getCustomOrder();
         }
 
         XStream xstream = new XStream();
+        //System.out.println(xstream.toXML(customerOrders));
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(rabbitMqHostName);
@@ -75,5 +76,6 @@ public class ErpSimulator {
 
         channelMO.close();
         connection.close();
+
     }
 }
