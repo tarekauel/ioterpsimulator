@@ -25,6 +25,8 @@ public class ErpSimulator {
 
         int numOfCustomerOrder = 10;
         String rabbitMqHostName = "localhost";
+        String rabbitMqUserName = null;
+        String rabbitMqPassword = null;
 
         if (args.length >= 1) {
             try {
@@ -39,6 +41,11 @@ public class ErpSimulator {
             rabbitMqHostName = args[1];
             System.out.println("Host of rabbitMq: " + rabbitMqHostName);
         }
+        if(args.length >= 4 && args[2] != null && args[3] != null){
+            rabbitMqUserName = args[2];
+            rabbitMqPassword = args[3];
+            System.out.println("Username of rabbitMq: " + rabbitMqUserName);
+        }
 
 
         CustomerOrder[] customerOrders = new CustomerOrder[numOfCustomerOrder];
@@ -52,6 +59,10 @@ public class ErpSimulator {
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(rabbitMqHostName);
+        if(rabbitMqPassword != null && rabbitMqUserName != null){
+            factory.setUsername(rabbitMqUserName);
+            factory.setPassword(rabbitMqPassword);
+        }
         Connection connection = factory.newConnection();
         Channel channelCO = connection.createChannel();
         channelCO.queueDeclare(CUSTOMER_ORDER_QUEUE_NAME, false, false, false, null);
