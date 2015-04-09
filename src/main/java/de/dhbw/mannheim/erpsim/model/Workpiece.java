@@ -5,16 +5,13 @@ package de.dhbw.mannheim.erpsim.model;
  */
 public class Workpiece {
     private String name;
-    private double speedDrillerRPM;
-    private double speedShaperRPM;
-    private double plannedSeconds;
-    public Workpiece(){}
 
-    public Workpiece(String name, double speedDrillerRPM, double speedShaperRPM, double plannedSeconds) {
+    public Workpiece(String name) {
         this.name = name;
-        this.speedDrillerRPM = speedDrillerRPM;
-        this.speedShaperRPM = speedShaperRPM;
-        this.plannedSeconds = plannedSeconds;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

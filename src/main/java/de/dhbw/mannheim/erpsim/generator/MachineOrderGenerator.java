@@ -38,11 +38,11 @@ public class MachineOrderGenerator {
 
         String machine = getMachineName(1);
 
-        double plannedSeconds = 25 + 2 * Math.random();
+        double plannedSeconds = 24000;
 
-        double speedShaperRPM = 10 + 10 * Math.random();
+        double speedShaperRPM = 15500;
 
-        double speedDrillerRPM = 10 + 10 * Math.random();
+        double speedDrillerRPM = 10200;
 
         MachineOrder mo =  new MachineOrder(uuid, machine, plannedSeconds, speedShaperRPM, speedDrillerRPM);
         generatedMachineOrder.add(mo);
