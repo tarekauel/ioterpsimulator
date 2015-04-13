@@ -1,9 +1,11 @@
 package de.dhbw.mannheim.erpsim.model;
 
+import java.io.Serializable;
+
 /**
- * Created by Lars on 08.04.2015.
+ * @author Lars Tilsner
  */
-public class Workpiece {
+public class Workpiece implements Serializable {
     private String name;
 
     public Workpiece(String name) {

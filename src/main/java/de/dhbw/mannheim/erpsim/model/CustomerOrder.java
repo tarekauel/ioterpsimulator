@@ -17,11 +17,13 @@
 
 package de.dhbw.mannheim.erpsim.model;
 
+import java.io.Serializable;
+
 /**
  * @author Tarek Auel
  * @since 08.04.2015
  */
-public class CustomerOrder {
+public class CustomerOrder implements Serializable {
 
     private final String customerFirstName;
 

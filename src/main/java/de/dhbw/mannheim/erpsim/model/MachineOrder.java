@@ -18,12 +18,13 @@
 package de.dhbw.mannheim.erpsim.model;
 
 import java.beans.Transient;
+import java.io.Serializable;
 
 /**
  * @author Tarek Auel
  * @since 08.04.2015
  */
-public class MachineOrder {
+public class MachineOrder implements Serializable {
 
     private final String id;
 
